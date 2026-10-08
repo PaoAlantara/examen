@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Contribuyente</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Registro de Contribuyente</h2>
+
+    <div class="card p-4 mt-3">
+        <!-- th:action apunta a la ruta POST de nuestro controlador -->
+        <form th:action="@{/contribuyentes/guardar}" th:object="${contribuyente}" method="post">
+            
+            <div class="mb-3">
+                <label class="form-label">Nombre:</label>
+                <!-- th:field amarra este input con la variable de Java -->
+                <input type="text" class="form-control" th:field="*{nombre}" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Apellido Paterno:</label>
+                <input type="text" class="form-control" th:field="*{apPaterno}" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">CURP:</label>
+                <input type="text" class="form-control" th:field="*{curp}" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Correo Electrónico:</label>
+                <input type="email" class="form-control" th:field="*{correo}" />
+            </div>
+
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a th:href="@{/contribuyentes}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>

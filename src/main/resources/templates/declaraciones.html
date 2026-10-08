@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Declaraciones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="#">Control de Impuestos</a>
+        <div class="navbar-nav">
+            <a class="nav-link" th:href="@{/contribuyentes}">Contribuyentes</a>
+            <a class="nav-link" th:href="@{/impuestos}">Impuestos</a>
+            <a class="nav-link active" th:href="@{/declaraciones}">Declaraciones</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h2>Registro de Declaraciones</h2>
+    <a th:href="@{/declaraciones/nueva}" class="btn btn-primary mb-3">Nueva Declaración</a>
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr><th>ID</th><th>Contribuyente</th><th>Impuesto</th><th>Importe</th><th>Fecha Registro</th></tr>
+        </thead>
+        <tbody>
+            <tr th:each="d : ${listaDeclaraciones}">
+                <td th:text="${d.idDeclaracion}"></td>
+                <!-- Fíjate cómo navegamos por las clases para obtener los nombres reales, no solo los IDs -->
+                <td th:text="${d.contribuyente.nombre + ' ' + d.contribuyente.apPaterno}"></td>
+                <td th:text="${d.impuesto.nombre}"></td>
+                <td th:text="${'$' + d.importe}"></td>
+                <td th:text="${d.fechaRegistro}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
